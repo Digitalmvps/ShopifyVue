@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Vue + TS</title>
+  </head>
+  <body>
+	<div id="app">
+		<App/>
+	</div>
+	<script src="https://unpkg.com/@shopify/app-bridge@3"></script>
+    <script src="https://unpkg.com/@shopify/app-bridge-utils@3"></script>
+    <script>
+    var AppBridge = window['app-bridge'];
+    var AppBridgeUtils = window['app-bridge-utils'];
+    var actions = window['app-bridge'].actions;
+ 
+	const params = new Proxy(new URLSearchParams(window.location.search), {
+		get: (searchParams, prop) => searchParams.get(prop),
+	  });
+
+   var createApp = AppBridge.default;
+   window.shopifyApp = createApp({
+    apiKey: 'env.apiKey',
+    host: params.host
+   });
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

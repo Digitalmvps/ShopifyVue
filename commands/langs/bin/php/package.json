@@ -1,0 +1,30 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "dependencies": {
+        "@originjs/vite-plugin-require-context": "^1.0.9",
+        "axios": "^0.27.2",
+        "sass": "^1.53.0",
+        "vite-plugin-dynamic-import": "^0.1.1",
+        "vue": "^3.2.37",
+        "vue-class-component": "^8.0.0-0",
+        "vue-meta": "^3.0.0-alpha.7",
+        "vue-router": "^4.0.0-0",
+        "vue3-runtime-template": "^1.0.1",
+        "vuex": "^4.0.0-0",
+		"@shopify/app-bridge-utils": "^3.1.2"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.7",
+        "postcss": "^8.4.14",
+        "tailwindcss": "^3.1.6",
+        "vite": "^3.0.0",
+        "vite-plugin-laravel": "^0.2.0-beta.27",
+        "@vitejs/plugin-vue": "^3.0.0",
+        "typescript": "^4.6.4",
+        "vue-tsc": "^0.38.4"
+    }
+}

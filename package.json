@@ -1,0 +1,25 @@
+{
+  "name": "@digitalmvps-npm/shopifyvue",
+  "version": "1.0.1",
+  "description": "A package that generates vuejs template for building shopify apps ",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "shopifyvue": "./index.js"
+  },
+  "keywords": [
+    "shopify",
+    "vuejs"
+  ],
+  "author": "Digitalmvps",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "commander": "^9.4.0",
+    "fs-extra": "^10.1.0",
+    "shelljs": "^0.8.5"
+  }
+}
