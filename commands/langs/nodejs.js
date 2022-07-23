@@ -41,7 +41,7 @@ export default function nodejs (appName) {
 		// install packages
 		infoMessage("Installing packages")
 		waitMessage('Please Wait')
-		shell.exec(`npm i  --prefix ${fullAppDir}`)
+		shell.exec(`npm i  --prefix ${fullAppDir} --cwd ${fullAppDir}`)
 
 		successMessage('Template generated!')
 		console.log(`change directory to '${appName}'`)
