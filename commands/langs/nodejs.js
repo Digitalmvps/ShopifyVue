@@ -46,7 +46,7 @@ export default function nodejs (appName) {
 		successMessage('Template generated!')
 		console.log(`change directory to '${appName}'`)
 		console.log(`run`)
-		infoMessage('npm run dev')
+		infoMessage('npm run serve:dev')
 		console.log(`To start your developement server`)
 
 	  }
