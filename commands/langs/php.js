@@ -22,7 +22,7 @@ export default function php (appName) {
 		shell.rm('-rf', `${fullAppDir}/webpack.mix.js`)
 
 		// set script files
-		copyFileOrFolder(`${fullAppDir}/temp/src`,'resources/scripts', false);
+		copyFileOrFolder(`${fullAppDir}/temp/src`,'resources/scripts', false, true);
 
 		// update welcome.blade.php
 		copyFileOrFolder('/bin/php/welcome.blade.php', 'resources/views/welcome.blade.php');
@@ -42,7 +42,10 @@ export default function php (appName) {
 		// install npm packages
 		infoMessage("Installing npm packages")
 		waitMessage('Please Wait')
-		shell.exec(`npm i  --prefix ${fullAppDir}`)
+
+		// remove package-lock.json
+		shell.exec(`cd ${fullAppDir} && rm package-lock.json`)
+		shell.exec(`cd ${fullAppDir} && npm install`)
 
 		// install laravel-shopfy package
 		infoMessage("Installing laravel-shopify package")

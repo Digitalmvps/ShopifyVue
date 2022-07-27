@@ -36,16 +36,24 @@ export default function nodejs (appName) {
 		copyFileOrFolder('/bin/nodejs/BaseService.ts', 'src/services/common/BaseService.ts');
 
 		// create server files
-		copyFileOrFolder('/bin/nodejs/server', 'server');
+		copyFileOrFolder('/bin/nodejs/server', 'server', true, true);
 
 		// install packages
 		infoMessage("Installing packages")
 		waitMessage('Please Wait')
+
+		// remove package-lock.json
+		shell.exec(`cd ${fullAppDir} && rm package-lock.json`)
+
+		// install vite dependencies
 		shell.exec(`cd ${fullAppDir} && npm install`)
 
 		successMessage('Template generated!')
 		console.log(`change directory to '${appName}'`)
-		console.log(`run`)
+		console.log(` `)
+		console.log(`Add a .env file'`)
+		console.log(` `)
+		console.log(`then, run:`)
 		infoMessage('npm run serve:dev')
 		console.log(`To start your developement server`)
 
