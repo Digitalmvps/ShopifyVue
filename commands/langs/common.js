@@ -11,6 +11,13 @@ const currentDir = shell.exec('pwd',{silent:true}).stdout;
 
 const setAppName = (appName) => {
 	fullAppDir =  currentDir.substring(0, currentDir.length - 1) + `/${appName}`;
+
+	var strFirstTwo = fullAppDir.substring(0,2);
+
+	// for windows
+	if(strFirstTwo == '/c') {
+		fullAppDir = 'c:' + fullAppDir.substring(2);
+	}
 }
 
 const infoMessage = (msg) => {
@@ -29,14 +36,8 @@ const successMessage = (msg) => {
 	console.log(chalk.bgGreen(msg))
 }
 
-const copyFileOrFolder = (source, destination, useRootDir = true) => {
-	fse.copySync( `${ useRootDir ? __dirname + source : '' + source}`, `${fullAppDir + '/' + destination}`, {overwrite: true}, function (err) {
-		if (err) {
-			errorMessage(console.error(err)); 
-		} else {
-			successMessage(destination + " configured");
-		}
-	});	
+const copyFileOrFolder = (source, destination, useRootDir = true, isfolder = false) => {
+	shell.cp(`${isfolder ? '-r -f' : '-f'}`,` ${ useRootDir ? __dirname + source : '' + source}`, `${fullAppDir + '/' + destination}`)
 }
 
 export {
@@ -46,5 +47,6 @@ export {
 	copyFileOrFolder,
 	setAppName,
 	waitMessage,
-	fullAppDir
+	fullAppDir,
+	__dirname
 }
