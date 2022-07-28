@@ -28,6 +28,12 @@ For PHP
 ```
 shopifyvue create "MyShopifyApp" --backend php
 ```
+
+Then Change directory to your new shopify app folder and run 
+```
+npm install
+```
+
 ### Setup
 
 #### NodeJs
