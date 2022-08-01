@@ -37,7 +37,7 @@ const successMessage = (msg) => {
 }
 
 const copyFileOrFolder = (source, destination, useRootDir = true, isfolder = false) => {
-	shell.cp(`${isfolder ? '-r -f' : '-f'}`,` ${ useRootDir ? __dirname + source : '' + source}`, `${fullAppDir + '/' + destination}`)
+	shell.cp(`${isfolder ? '-r' : '-f'}`,` ${ useRootDir ? __dirname + source : '' + source}`, `${fullAppDir + '/' + destination}`)
 }
 
 export {
