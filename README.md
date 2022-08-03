@@ -16,7 +16,10 @@ Install ShopifyVue as a global package
 ```
 npm i -g @digitalmvps-npm/shopifyvue
 ```
+
 ### Create a new project
+Note: We recommend using Git bash terminal on Windows.
+
 To create a new project, you can specify the backend language ShopifyVue should use by using `shopifyvue create "MyShopifyApp" --backend <language>`.
 
 For NodeJs
@@ -66,7 +69,7 @@ Start your development server
 ```
 npm run serve:dev
 ```
-Setup [Ngrok](https://ngrok.com/download) and expose your development server 
+Setup [Ngrok](https://ngrok.com/docs/getting-started) and expose your development server 
 ```
 ngrok http http://localhost:8081/
 ```
