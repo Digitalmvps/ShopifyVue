@@ -1,7 +1,7 @@
 # ShopifyVue
-ShopifyVue helps to generate VueJs template to build embedded shopify apps. It allows you select your backennd language, and takes cares of its setup. 
+ShopifyVue helps you generate VueJs template to build shopify embed apps. It allows you to select your backennd language, and handles its setup for you. 
 
-The VueJs template generated has a Vue3 + Vite + Typescript setup. It also has built in NuxtJs like features like automatic route discovery, page layout and so on.
+The VueJs template generated has a Vue3 + Vite + Typescript setup, with built-in NuxtJs like features such as automatic route discovery, page layout and so on.
 
 ## Features
 - Multi-language backend support (NodeJs,PHP)
@@ -16,7 +16,10 @@ Install ShopifyVue as a global package
 ```
 npm i -g @digitalmvps-npm/shopifyvue
 ```
+
 ### Create a new project
+Note: We recommend using Git bash terminal on Windows.
+
 To create a new project, you can specify the backend language ShopifyVue should use by using `shopifyvue create "MyShopifyApp" --backend <language>`.
 
 For NodeJs
@@ -66,7 +69,7 @@ Start your development server
 ```
 npm run serve:dev
 ```
-Setup [Ngrok](https://ngrok.com/download) and expose your development server 
+Setup [Ngrok](https://ngrok.com/docs/getting-started) and expose your development server 
 ```
 ngrok http http://localhost:8081/
 ```
