@@ -16,40 +16,37 @@ export default function php (appName) {
 	    shell.exec(`git clone https://github.com/Doctordrayfocus/vue-typescript-template.git ${appName}/temp`)
 
 		// configuring template
-		infoMessage("configuring template")
+		infoMessage("Configuring template")
 
-		// remove webpack.mix.js
-		shell.rm('-rf', `${fullAppDir}/webpack.mix.js`)
+		// setting up vite
+		infoMessage('Setting up laravel vite')
+		shell.exec(`cd ${fullAppDir} &&  npx @preset/cli apply laravel:vite -e`)
+
+		// remove scripts folder
+		shell.rm('-rf', `${fullAppDir}/resources/scripts`)
 
 		// set script files
-		copyFileOrFolder(`${fullAppDir}/temp/src`,'resources/scripts', false, true);
+		copyFileOrFolder(`${fullAppDir}/temp/src/.`,'resources/scripts', false, true);
 
 		// update welcome.blade.php
 		copyFileOrFolder('/bin/php/welcome.blade.php', 'resources/views/welcome.blade.php');
-	
-		// update vite.config.ts
-		copyFileOrFolder('/bin/php/vite.config.ts', 'vite.config.ts');
-
-		// update package.json
-		copyFileOrFolder('/bin/php/package.json', 'package.json');
 
 		// update BaseService.ts
 		copyFileOrFolder('/bin/php/BaseService.ts', 'resources/scripts/services/common/BaseService.ts');
 
+		// update package.json
+		copyFileOrFolder('/bin/php/package.json', 'package.json');
+
+		// update vite.config.ts
+		copyFileOrFolder('/bin/php/vite.config.ts', 'vite.config.ts');
+
 		// remove redundant files
 		shell.rm('-rf', `${fullAppDir}/temp`)
-
-		// install npm packages
-		infoMessage("Installing npm packages")
-		waitMessage('Please Wait')
-
-		// remove package-lock.json
-		shell.exec(`cd ${fullAppDir} && rm package-lock.json`)
 
 		// install laravel-shopfy package
 		infoMessage("Installing laravel-shopify package")
 		waitMessage('Please Wait')
-		shell.exec(`composer require osiset/laravel-shopify innocenzi/laravel-vite --working-dir=${fullAppDir}`)
+		shell.exec(`composer require osiset/laravel-shopify --working-dir=${fullAppDir}`)
 
 		successMessage('Template generated!')
 		console.log(`change directory to '${appName}'`)
