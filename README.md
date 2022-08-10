@@ -97,6 +97,8 @@ Go to your app on [Shopify partner dashboard](https://partners.shopify.com/20416
 ```
 <Ngrok https url>/authenticate
 ```
+> To make your app work, you must configure the database, jobs, and middlewares, as well as publish the configurations for the [Laravel Shopify](https://github.com/osiset/laravel-shopify) package. Follow the installation instructions on the wiki page [here](https://github.com/osiset/laravel-shopify/wiki/Installation).
+
 ### Testing your App
 Before you continue, you can [test your app](https://shopify.dev/apps/store/review/testing) on developemt store to validate your setup.
 
