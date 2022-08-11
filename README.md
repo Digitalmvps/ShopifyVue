@@ -14,7 +14,7 @@ The VueJs template generated has a Vue3 + Vite + Typescript setup, with built-in
 ### Install
 Install ShopifyVue as a global package
 ```
-npm i -g @digitalmvps-npm/shopifyvue
+npm i -g shopifyvue
 ```
 
 ### Create a new project
