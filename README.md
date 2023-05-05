@@ -1,12 +1,12 @@
 # ShopifyVue
 ShopifyVue helps you generate VueJs template to build shopify embed apps. It allows you to select your backennd language, and handles its setup for you. 
 
-The VueJs template generated has a Vue3 + Vite + Typescript setup, with built-in NuxtJs like features such as automatic route discovery, page layout and so on.
+The VueJs template generated has a Vue3 + VueCLI + Typescript setup, with built-in NuxtJs like features such as automatic route discovery, page layout and so on.
 
 ## Features
 - Multi-language backend support (NodeJs,PHP)
 - Shopify AppBridge Authentication
-- Vue3 + Vite + Typescript
+- Vue3 + VueCLI + Typescript
 - Automatic Route Discovery
 - Automatic Layout System
 
@@ -45,8 +45,9 @@ The NodeJs template generated is an extension of [Shopify's NodeJs Template](htt
 ```
 SHOPIFY_API_KEY={api key}           # Your API key
 SHOPIFY_API_SECRET={api secret key} # Your API secret key
+BACKEND_PORT={server port e.g 3000}
 SCOPES={scopes}                     # Your app's required scopes, comma-separated
-HOST={your app's host}              # Your app's host
+HOST={your app's host e.g ngrok}              # Your app's host
 ```
 
 Then, create a new app in your [Shopify Partner Dashboard](https://partners.shopify.com/) and copy the `api key` and `api secret key` to your `.env` file.
@@ -67,25 +68,26 @@ Then, create a new app in your [Shopify Partner Dashboard](https://partners.shop
 #### For NodeJs
 Start your development server
 ```
-npm run serve:dev
+npm run start:dev
 ```
 Setup [Ngrok](https://ngrok.com/docs/getting-started) and expose your development server 
 ```
-ngrok http http://localhost:8081/
+ngrok http http://localhost:3000/
 ```
 Go to your app on [Shopify partner dashboard](https://partners.shopify.com/2041663/apps) and set the `App URL` as the Ngrok https url and add the following to `Allowed redirection URL(s)`
 ```
-<Ngrok https url>/auth
-<Ngrok https url>/auth/callback
-<Ngrok https url>/auth/online
+<Ngrok https url>/api/auth
+<Ngrok https url>/api/auth/callback
+<Ngrok https url>/api/auth/online
 ```
+> The NodeJs server would not start without a valid `HOST`. During development, you need to first expose the server port e.g localhost:3000 with ngrok, then update the `.env` with the ngrok url before starting the development server.
 
 ### For PHP
-Start vite developement server
+Build frontend scripts with laravel mix
 ```
 npm run dev
 ```
-Start PHP development server on a new terminal tab
+Start PHP development server
 ```
 php artisan serve
 ```
@@ -163,7 +165,7 @@ And the AppBridge intiation and setup has been implemented by ShopifyVue.
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue + TS</title>
+    <title>Vue + TS</title>
   </head>
   <body>
 	<div id="app">
@@ -182,11 +184,11 @@ And the AppBridge intiation and setup has been implemented by ShopifyVue.
 
    var createApp = AppBridge.default;
    window.shopifyApp = createApp({
-    apiKey: 'env.apiKey', // this will be automatically replaced by the server
+    apiKey: 'env.apiKey',
     host: params.host
    });
     </script>
-    <script type="module" src="/src/main.ts"></script>
+   
   </body>
 </html>
 ```
@@ -195,31 +197,31 @@ And the AppBridge intiation and setup has been implemented by ShopifyVue.
 @extends('shopify-app::layouts.default')
 
 @section('content')
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/css/line-awesome.min.css">
-        <link href="{{ asset('css/app.css?v=0.22') }}" rel="stylesheet">
-        <title>App Name</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/line-awesome.min.css">
+    <link href="{{ asset('css/app.css?v=0.22') }}" rel="stylesheet">
+    <title>App Name</title>
+</head>
 
-    <body>
-        <div id="app">
-            <App />
-        </div>
-        @if (\Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_enabled'))
-            <script
-                src="https://unpkg.com/@shopify/app-bridge{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@' . config('shopify-app.appbridge_version') : '' }}">
-            </script>
-            <script
-                src="https://unpkg.com/@shopify/app-bridge-utils{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@' . config('shopify-app.appbridge_version') : '' }}">
-            </script>
-            <script @if (\Osiset\ShopifyApp\Util::getShopifyConfig('turbo_enabled')) data-turbolinks-eval="false" @endif>
-                var AppBridge = window['app-bridge'];
+<body>
+    <div id="app">
+        <App />
+    </div>
+    @if (\Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_enabled'))
+    <script
+        src="https://unpkg.com/@shopify/app-bridge{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@' . config('shopify-app.appbridge_version') : '' }}">
+    </script>
+    <script
+        src="https://unpkg.com/@shopify/app-bridge-utils{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@' . config('shopify-app.appbridge_version') : '' }}">
+    </script>
+    <script @if (\Osiset\ShopifyApp\Util::getShopifyConfig('turbo_enabled')) data-turbolinks-eval="false" @endif>
+        var AppBridge = window['app-bridge'];
                 var actions = AppBridge.actions;
                 var createApp = AppBridge.default;
                 window.shopifyApp = createApp({
@@ -228,18 +230,19 @@ And the AppBridge intiation and setup has been implemented by ShopifyVue.
                     host: "{{ \Request::get('host') }}",
                     forceRedirect: true,
                 });
-            </script>
+    </script>
 
-            @include('shopify-app::partials.token_handler')
-            @include('shopify-app::partials.flash_messages')
-        @endif
-        <script src="{{ asset('js/app.js?v=0.22') }}"></script>
-    </body>
-    </html>
+    @include('shopify-app::partials.token_handler')
+    @include('shopify-app::partials.flash_messages')
+    @endif
+    <script src="{{ asset('js/main.js?v=0.01') }}"></script>
+</body>
+
+</html>
 @endsection
 
 @section('scripts')
-    @parent
+@parent
 @endsection
 ```
 
