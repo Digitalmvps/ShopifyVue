@@ -1,6 +1,6 @@
 {
   "name": "@digitalmvps-npm/shopifyvue",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "A package that generates vuejs template for building shopify apps ",
   "main": "index.js",
   "type": "module",
