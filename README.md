@@ -83,7 +83,7 @@ Go to your app on [Shopify partner dashboard](https://partners.shopify.com/20416
 > The NodeJs server would not start without a valid `HOST`. During development, you need to first expose the server port e.g localhost:3000 with ngrok, then update the `.env` with the ngrok url before starting the development server.
 
 ### For PHP
-Build frontend scripts with larevel mix
+Build frontend scripts with laravel mix
 ```
 npm run dev
 ```
