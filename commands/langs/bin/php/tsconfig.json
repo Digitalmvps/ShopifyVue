@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"strict": false,
+		"jsx": "preserve",
+		"importHelpers": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "node",
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"sourceMap": true,
+        "noImplicitAny": false,
+        "strictFunctionTypes": false,
+        "types": [
+            "webpack-env"
+          ],
+          "paths": {},
+          "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+          ]
+    },
+    "include": [
+        "resources/js/**/*"
+    ]
+}
