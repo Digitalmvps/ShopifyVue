@@ -68,25 +68,26 @@ Then, create a new app in your [Shopify Partner Dashboard](https://partners.shop
 #### For NodeJs
 Start your development server
 ```
-npm run serve:dev
+npm run start:dev
 ```
 Setup [Ngrok](https://ngrok.com/docs/getting-started) and expose your development server 
 ```
-ngrok http http://localhost:8081/
+ngrok http http://localhost:3000/
 ```
 Go to your app on [Shopify partner dashboard](https://partners.shopify.com/2041663/apps) and set the `App URL` as the Ngrok https url and add the following to `Allowed redirection URL(s)`
 ```
-<Ngrok https url>/auth
-<Ngrok https url>/auth/callback
-<Ngrok https url>/auth/online
+<Ngrok https url>/api/auth
+<Ngrok https url>/api/auth/callback
+<Ngrok https url>/api/auth/online
 ```
+> The NodeJs server would not start without a valid `HOST`. During development,you need to first expose the server port e.g localhost:3000 with ngrok, then update the `.env` with the ngrok url before starting the development server.
 
 ### For PHP
-Start vite developement server
+Build frontend scripts with larevel mix
 ```
 npm run dev
 ```
-Start PHP development server on a new terminal tab
+Start PHP development server
 ```
 php artisan serve
 ```
