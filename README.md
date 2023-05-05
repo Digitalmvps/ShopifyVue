@@ -1,12 +1,12 @@
 # ShopifyVue
 ShopifyVue helps you generate VueJs template to build shopify embed apps. It allows you to select your backennd language, and handles its setup for you. 
 
-The VueJs template generated has a Vue3 + Vite + Typescript setup, with built-in NuxtJs like features such as automatic route discovery, page layout and so on.
+The VueJs template generated has a Vue3 + VueCLI + Typescript setup, with built-in NuxtJs like features such as automatic route discovery, page layout and so on.
 
 ## Features
 - Multi-language backend support (NodeJs,PHP)
 - Shopify AppBridge Authentication
-- Vue3 + Vite + Typescript
+- Vue3 + VueCLI + Typescript
 - Automatic Route Discovery
 - Automatic Layout System
 
@@ -45,8 +45,9 @@ The NodeJs template generated is an extension of [Shopify's NodeJs Template](htt
 ```
 SHOPIFY_API_KEY={api key}           # Your API key
 SHOPIFY_API_SECRET={api secret key} # Your API secret key
+BACKEND_PORT={server port e.g 3000}
 SCOPES={scopes}                     # Your app's required scopes, comma-separated
-HOST={your app's host}              # Your app's host
+HOST={your app's host e.g ngrok}              # Your app's host
 ```
 
 Then, create a new app in your [Shopify Partner Dashboard](https://partners.shopify.com/) and copy the `api key` and `api secret key` to your `.env` file.
