@@ -1,5 +1,5 @@
 # ShopifyVue
-ShopifyVue helps you generate VueJs template to build shopify embed apps. It allows you to select your backennd language, and handles its setup for you. 
+ShopifyVue helps you generate VueJs template to build shopify embed apps. It allows you to select your backend language, and handles its setup for you. 
 
 The VueJs template generated has a Vue3 + VueCLI + Typescript setup, with built-in NuxtJs like features such as automatic route discovery, page layout and so on.
 
