@@ -42,8 +42,6 @@
     <script src="{{ asset('js/main.js?v=0.01') }}"></script>
 </body>
 
-
-
 </html>
 @endsection
 
