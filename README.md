@@ -80,7 +80,7 @@ Go to your app on [Shopify partner dashboard](https://partners.shopify.com/20416
 <Ngrok https url>/api/auth/callback
 <Ngrok https url>/api/auth/online
 ```
-> The NodeJs server would not start without a valid `HOST`. During development,you need to first expose the server port e.g localhost:3000 with ngrok, then update the `.env` with the ngrok url before starting the development server.
+> The NodeJs server would not start without a valid `HOST`. During development, you need to first expose the server port e.g localhost:3000 with ngrok, then update the `.env` with the ngrok url before starting the development server.
 
 ### For PHP
 Build frontend scripts with larevel mix
