@@ -165,7 +165,7 @@ And the AppBridge intiation and setup has been implemented by ShopifyVue.
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue + TS</title>
+    <title>Vue + TS</title>
   </head>
   <body>
 	<div id="app">
@@ -184,11 +184,11 @@ And the AppBridge intiation and setup has been implemented by ShopifyVue.
 
    var createApp = AppBridge.default;
    window.shopifyApp = createApp({
-    apiKey: 'env.apiKey', // this will be automatically replaced by the server
+    apiKey: 'env.apiKey',
     host: params.host
    });
     </script>
-    <script type="module" src="/src/main.ts"></script>
+   
   </body>
 </html>
 ```
@@ -197,31 +197,31 @@ And the AppBridge intiation and setup has been implemented by ShopifyVue.
 @extends('shopify-app::layouts.default')
 
 @section('content')
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/css/line-awesome.min.css">
-        <link href="{{ asset('css/app.css?v=0.22') }}" rel="stylesheet">
-        <title>App Name</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/line-awesome.min.css">
+    <link href="{{ asset('css/app.css?v=0.22') }}" rel="stylesheet">
+    <title>App Name</title>
+</head>
 
-    <body>
-        <div id="app">
-            <App />
-        </div>
-        @if (\Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_enabled'))
-            <script
-                src="https://unpkg.com/@shopify/app-bridge{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@' . config('shopify-app.appbridge_version') : '' }}">
-            </script>
-            <script
-                src="https://unpkg.com/@shopify/app-bridge-utils{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@' . config('shopify-app.appbridge_version') : '' }}">
-            </script>
-            <script @if (\Osiset\ShopifyApp\Util::getShopifyConfig('turbo_enabled')) data-turbolinks-eval="false" @endif>
-                var AppBridge = window['app-bridge'];
+<body>
+    <div id="app">
+        <App />
+    </div>
+    @if (\Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_enabled'))
+    <script
+        src="https://unpkg.com/@shopify/app-bridge{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@' . config('shopify-app.appbridge_version') : '' }}">
+    </script>
+    <script
+        src="https://unpkg.com/@shopify/app-bridge-utils{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@' . config('shopify-app.appbridge_version') : '' }}">
+    </script>
+    <script @if (\Osiset\ShopifyApp\Util::getShopifyConfig('turbo_enabled')) data-turbolinks-eval="false" @endif>
+        var AppBridge = window['app-bridge'];
                 var actions = AppBridge.actions;
                 var createApp = AppBridge.default;
                 window.shopifyApp = createApp({
@@ -230,18 +230,19 @@ And the AppBridge intiation and setup has been implemented by ShopifyVue.
                     host: "{{ \Request::get('host') }}",
                     forceRedirect: true,
                 });
-            </script>
+    </script>
 
-            @include('shopify-app::partials.token_handler')
-            @include('shopify-app::partials.flash_messages')
-        @endif
-        <script src="{{ asset('js/app.js?v=0.22') }}"></script>
-    </body>
-    </html>
+    @include('shopify-app::partials.token_handler')
+    @include('shopify-app::partials.flash_messages')
+    @endif
+    <script src="{{ asset('js/main.js?v=0.01') }}"></script>
+</body>
+
+</html>
 @endsection
 
 @section('scripts')
-    @parent
+@parent
 @endsection
 ```
 
